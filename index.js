@@ -36,7 +36,7 @@ const args = {
 };
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 3000;
 
 const requestTime = function (req, res, next) {
   req.requestTime = Date.now();
