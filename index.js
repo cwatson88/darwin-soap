@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
       await client.addSoapHeader(headers);
       const result = await client.GetNextDeparturesAsync(args);
       const train = await result[0].DeparturesBoard.departures;
-      res.send({ message: train });
+      res.send({ message: { time: req.requestTime, train } });
     });
   } catch (error) {
     console.log(error);
