@@ -1,6 +1,3 @@
-const express = require('express');
-
-
 /*
 ### GetNextDepartures:
 
@@ -16,7 +13,7 @@ const {
 
 const departureStation = 'EUS';
 const destinationStation = 'BHI';
-const dateTime = new Date().toJSON();
+const dateTime = new Date('2018/11/16 10:30').toJSON();
 const minutesTo = 180; // integer between 0 and 1440 mins
 
 const req = `
@@ -41,18 +38,3 @@ soap.createClient(url, async (err, client) => {
   const train = await result[0].DeparturesBoard.departures;
   return train;
 });
-
-
-const app = express();
-const port = 8080;
-
-app.get('/', (req, res) => {
-  soap.createClient(url, async (err, client) => {
-    client.addSoapHeader(headers);
-    const result = await client.GetNextDeparturesAsync(args2);
-    const train = await result[0].DeparturesBoard.departures;
-    res.send(train);
-  });
-});
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
