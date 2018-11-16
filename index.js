@@ -46,17 +46,17 @@ const requestTime = function (req, res, next) {
 app.use(requestTime);
 
 app.get('/', (req, res) => {
-//   res.send({ message: req.requestTime });
-  try {
-    soap.createClient(url, async (err, client) => {
-      await client.addSoapHeader(headers);
-      const result = await client.GetNextDeparturesAsync(args);
-      const train = await result[0].DeparturesBoard.departures;
-      res.send({ message: train });
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  res.send({ message: req.requestTime });
+  // try {
+  //   soap.createClient(url, async (err, client) => {
+  //     await client.addSoapHeader(headers);
+  //     const result = await client.GetNextDeparturesAsync(args);
+  //     const train = await result[0].DeparturesBoard.departures;
+  //     res.send({ message: train });
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  // }
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
