@@ -52,7 +52,7 @@ const requestTime = (req, res, next) => {
 router.use(requestTime);
 
 router.get(
-  '/:destinationStation/:departureStation/',
+  '/:departureStation-:destinationStation/',
   async (req, res) => {
     try {
       const trains = await getDepartureBoardByCRS(req.params, req.dateTime);

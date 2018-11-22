@@ -5,7 +5,7 @@ const router = express.Router();
 /*
 ### GetNextDepartures:
 
-see https: //lite.realtime.nationalrail.co.uk/OpenLDBsvWS/
+see https: //lite.realtime.nationalrail.co.uk/OpenldbsvWS/
 for full SOAP info
 
 */
@@ -20,13 +20,16 @@ const getDepBoardWithDetails = async (
 ) => {
   const xml = `
     <sv:GetDepBoardWithDetailsRequest>
-        <sv:numRows>8</sv:numRows>
-        <sv:crs>${departureStation.toUpperCase()}</sv:crs>
-        <sv:filterCrs>${destinationStation.toUpperCase()}</sv:filterCrs>
-        <sv:filterType>to</sv:filterType>
-        <sv:timeOffset>0</sv:timeOffset>
-        <sv:timeWindow>100</sv:timeWindow>
-    </sv:GetDepBoardWithDetailsRequest>`;
+    <sv:numRows>2</sv:numRows>
+    <sv:crs>${departureStation.toUpperCase()}</sv:crs>
+    <sv:time>2018-11-22T21:50:00</sv:time>
+    <sv:timeWindow>100</sv:timeWindow>
+    <sv:filtercrs>${destinationStation.toUpperCase()}</sv:filtercrs>
+    <sv:filterType>to</sv:filterType>
+    <sv:filterTOC></sv:filterTOC>
+    <sv:services>PBS</sv:services>
+    <sv:getNonPassengerServices>false</sv:getNonPassengerServices>
+ </sv:GetDepBoardWithDetailsRequest>`;
 
   const args = {
     _xml: JSON.stringify(xml).replace(/\\n|\\t/g, ''),
@@ -35,7 +38,7 @@ const getDepBoardWithDetails = async (
   const client = await soap.createClientAsync(url);
   await client.addSoapHeader(headers);
   const result = await client.GetDepBoardWithDetailsAsync(args);
-  const train = await result[0].GetBoardResult;
+  const train = await result[0].GetBoardWithDetailsResult;
   return train;
 };
 
@@ -48,7 +51,7 @@ const requestTime = (req, res, next) => {
 router.use(requestTime);
 
 router.get(
-  '/:destinationStation/:departureStation/',
+  '/:departureStation-:destinationStation/',
   async (req, res) => {
     try {
       const trains = await getDepBoardWithDetails(req.params, req.dateTime);

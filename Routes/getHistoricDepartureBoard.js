@@ -46,7 +46,7 @@ const getHistoricDepartureBoard = async (
 };
 
 router.get(
-  '/:destinationStation/:departureStation/',
+  '/:departureStation-:destinationStation/',
   async (req, res) => {
     try {
       const trains = await getHistoricDepartureBoard(req.params);
