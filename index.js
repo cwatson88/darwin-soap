@@ -5,6 +5,7 @@ const getFastestDepartures = require('./Routes/getFastestDepartures');
 const getDepartureBoardByCRS = require('./Routes/getDepartureBoardByCRS');
 const getDepBoardWithDetails = require('./Routes/getDepBoardWithDetails');
 const getHistoricDepartureBoard = require('./Routes/getHistoricDepartureBoard');
+const getTOCList = require('./Routes/getTOCList');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -36,6 +37,10 @@ app.use(
 app.use(
   '/getHistoric',
   getHistoricDepartureBoard,
+);
+app.use(
+  '/TOCList',
+  getTOCList,
 );
 
 app.use('/fastestDepartures', getFastestDepartures);

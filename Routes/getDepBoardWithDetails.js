@@ -20,9 +20,9 @@ const getDepBoardWithDetails = async (
 ) => {
   const xml = `
     <sv:GetDepBoardWithDetailsRequest>
-    <sv:numRows>2</sv:numRows>
+    <sv:numRows>10</sv:numRows>
     <sv:crs>${departureStation.toUpperCase()}</sv:crs>
-    <sv:time>2018-11-22T21:50:00</sv:time>
+    <sv:time>2018-11-23T21:50:00</sv:time>
     <sv:timeWindow>100</sv:timeWindow>
     <sv:filtercrs>${destinationStation.toUpperCase()}</sv:filtercrs>
     <sv:filterType>to</sv:filterType>
