@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const getNextDepartures = require('./Routes/getNextDepartures');
 const getDisruptionList = require('./Routes/getDisruptionList');
 const getFastestDepartures = require('./Routes/getFastestDepartures');
@@ -17,6 +18,7 @@ const docs = {
     '/fastestDepartures/eus/bhi/',
   ],
 };
+app.use(cors());
 app.get('/', async (req, res) => {
   res.json(docs);
 });
