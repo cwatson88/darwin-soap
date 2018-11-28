@@ -16,13 +16,13 @@ const {
 } = require('../darwin-config.js');
 
 const getDepBoardWithDetails = async (
-  { departureStation, destinationStation },
+  { departureStation, destinationStation, dateTime },
 ) => {
   const xml = `
     <sv:GetDepBoardWithDetailsRequest>
     <sv:numRows>10</sv:numRows>
     <sv:crs>${departureStation.toUpperCase()}</sv:crs>
-    <sv:time>2018-11-23T21:50:00</sv:time>
+    <sv:time>${dateTime}</sv:time>
     <sv:timeWindow>100</sv:timeWindow>
     <sv:filtercrs>${destinationStation.toUpperCase()}</sv:filtercrs>
     <sv:filterType>to</sv:filterType>
