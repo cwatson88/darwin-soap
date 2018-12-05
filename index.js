@@ -14,8 +14,11 @@ const port = process.env.PORT || 3000;
 const docs = {
   endpoints: [
     '/getDisruptions/eus',
-    '/nextDepartures/eus/bhi/',
-    '/fastestDepartures/eus/bhi/',
+    '/nextDepartures/eus-bhi/',
+    '/departures/eus-bhi/',
+    '/departureBoard/eus-bhi/',
+    '/fastestDepartures/eus-bhi/',
+    '/TOCList',
   ],
 };
 app.use(cors());
