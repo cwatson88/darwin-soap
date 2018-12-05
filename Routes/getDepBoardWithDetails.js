@@ -19,7 +19,7 @@ const {
 
 const getDepBoardWithDetails = async (
   {
-    departureStation, destinationStation, timeWindow = 5, TOC,
+    departureStation, destinationStation, timeWindow = 5, TOC = '',
   }, dateTime,
 ) => {
   const xml = `
